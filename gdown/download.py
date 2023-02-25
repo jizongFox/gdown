@@ -93,7 +93,7 @@ def download(
     proxy=None,
     speed=None,
     use_cookies=True,
-    verify=True,
+    verify=False,
     id=None,
     fuzzy=False,
     resume=False,
@@ -152,7 +152,7 @@ def download(
 
     while True:
         try:
-            res = sess.get(url, stream=True, verify=verify)
+            res = sess.get(url, stream=True, verify=False)
         except requests.exceptions.ProxyError as e:
             print(
                 "An error has occurred using proxy:",
@@ -251,7 +251,7 @@ def download(
 
     if tmp_file is not None and f.tell() != 0:
         headers = {"Range": "bytes={}-".format(f.tell())}
-        res = sess.get(url, headers=headers, stream=True, verify=verify)
+        res = sess.get(url, headers=headers, stream=True, verify=False)
 
     if not quiet:
         print("Downloading...", file=sys.stderr)

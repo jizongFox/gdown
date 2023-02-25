@@ -105,7 +105,7 @@ def _download_and_parse_google_drive_link(
     url,
     quiet=False,
     remaining_ok=False,
-    verify=True,
+    verify=False,
 ):
     """Get folder structure of Google Drive folder URL."""
 
@@ -118,7 +118,7 @@ def _download_and_parse_google_drive_link(
         url += "?hl=en"
 
     try:
-        res = sess.get(url, verify=verify)
+        res = sess.get(url, verify=False)
     except requests.exceptions.ProxyError as e:
         print(
             "An error has occurred using proxy:", sess.proxies, file=sys.stderr
@@ -267,7 +267,7 @@ def download_folder(
             url,
             quiet=quiet,
             remaining_ok=remaining_ok,
-            verify=verify,
+            verify=False,
         )
     except RuntimeError as e:
         print("Failed to retrieve folder contents:", file=sys.stderr)
@@ -307,7 +307,7 @@ def download_folder(
             proxy=proxy,
             speed=speed,
             use_cookies=use_cookies,
-            verify=verify,
+            verify=False,
         )
 
         if filename is None:

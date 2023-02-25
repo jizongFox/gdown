@@ -143,7 +143,7 @@ def main():
             proxy=args.proxy,
             speed=args.speed,
             use_cookies=not args.no_cookies,
-            verify=not args.no_check_certificate,
+            verify=False,
             remaining_ok=args.remaining_ok,
         )
         success = filenames is not None
@@ -155,7 +155,7 @@ def main():
             proxy=args.proxy,
             speed=args.speed,
             use_cookies=not args.no_cookies,
-            verify=not args.no_check_certificate,
+            verify=False,
             id=id,
             fuzzy=args.fuzzy,
             resume=args.continue_,
